@@ -24,7 +24,7 @@ while True:
         inicio = str(input(''))                        # Início do jogo
         if inicio == 'start':  
             totalj = 0
-            totalj = totalj + randint(1,10)
+            totalj += randint(1,10)
             print(f'\nVocê começa com {totalj}')
             while True:
                 if totalj > 21:
@@ -79,8 +79,83 @@ while True:
 
 
     if njogadores == 2:                                # Versão para dois jogadores                         
-        print('Ainda em desenvolvimento!')
-        pass
+        os.system('cls') or None
+        print('Regras do jogo:\nPara ganhar você deve atingir um valor maior que o seu adversário sem ultrapassar 21 pontos podendo parar após cada jogada.')
+        print('\nDigite "start" para começar.') 
+        inicio = str(input(''))                        # Início do jogo
+        if inicio == 'start':
+            totalj1 = 0
+            totalj1 += randint(1,10)
+            totalj2 = 0
+            totalj2 += randint(1,10)
+            os.system('cls') or None
+            print(f'Jogador 1: Você começa com {totalj1}')                      # Jogador 1
+            
+            while True:
+                if totalj1 > 21:
+                    print('Jogador 1: Você estourou!!!')
+                    sleep(2)
+                    break
+                print('\nJogador 1: Deseja continuar jogando? [S/N]')
+                opt = str(input(''))
+                if opt == 'S' or opt == 's':
+                    jogada = randint(1,10)
+                    totalj1 += jogada
+                    os.system('cls') or None
+                    print(f'\nJogador 1: Você tirou {jogada} e possui um total de {totalj1}')
+                elif opt == 'N' or opt == 'n':
+                    break
+                else:
+                    print('\nOpção inválida, digite S ou N.')
+            os.system('cls') or None
+
+            print(f'\nJogador 1: Você ficou com um total de {totalj1}\n')
+            sleep(2)
+            
+            print('Vez do jogador 2')                                          # Jogador 2
+            sleep(2)                                           
+            print(f'\nJogador 2: Você começa com {totalj2}')
+            
+            while True:
+                if totalj2 > 21:
+                    print('\nJogador 2: Você estourou!!!')
+                    sleep(2)
+                    break
+                print('\nJogador 2: Deseja continuar jogando? [S/N]')
+                opt = str(input(''))
+                if opt == 'S' or opt == 's':
+                    jogada = randint(1,10)
+                    totalj2 += jogada
+                    os.system('cls') or None
+                    print(f'\nJogador 2: Você tirou {jogada} e possui um total de {totalj2}')
+                elif opt == 'N' or opt == 'n':
+                    break
+                else:
+                    print('\nOpção inválida, digite S ou N.')
+
+            
+            print(f'\nJogador 2: Você ficou com um total de {totalj2}\n')
+            sleep(2)
+            os.system('cls') or None
+            print(f'Total jogador 1: {totalj1}')
+            print(f'Total jogador 2: {totalj2}')
+            sleep(3)
+            
+            if totalj1 == totalj2:
+                print('\nVocês empataram. Tentem uma revanche.')
+            elif totalj1 > 21 and totalj2 > 21:
+                print('\nVocês estouraram!\nMais sorte na próxima!')
+            elif totalj1 > 21:
+                print('\nJogador 1 estourou.\nJogador 2 venceu.')
+            elif totalj2 > 21:
+                print('\nJogador 2 estourou.\nJogador 1 venceu.')
+            elif totalj1 > totalj2:
+                print('\nJogador 1 chegou mais perto de 21.\nJogador 1 venceu!')
+            elif totalj2 > totalj1:
+                print('\nJogador 2 chegou mais perto de 21.\nJogador 2 venceu!')
+            sleep(5)
+            
+            
 
     if njogadores < 1 or njogadores > 2:               # Número inexistente de jogadores
         print('Número de jogadores inválido, escolha um valor entre 1 e 2.')
